@@ -1,0 +1,2 @@
+Corran esta linea en la consola para compilar main:
+clang main.c funciones_cs50.c -o main
