@@ -152,7 +152,7 @@ void checkSpaces(){
 					current->next=newNode;
 				}
 				current=current->next;
-				if(current->next->val=='-'){
+				if(current->next->val=='-'||current->next->val=='&'){
 					if(current->next->next!=NULL&&current->next->next->next!=NULL){
 						if(current->next->next->val==' '){
 							temp=current->next->next;
@@ -186,7 +186,7 @@ void checkSpaces(){
 					if(current->next->val==' ')
 						current=current->next;
 				}
-				if(current->next->val=='-'){
+				if(current->next->val=='-'||current->next->val=='&'){
 					if(current->next->next!=NULL&&current->next->next->next!=NULL){
 						if(current->next->next->val==' '){
 							temp=current->next->next;
@@ -239,7 +239,27 @@ void checkSpaces(){
 				}
 			}
 			else{
-				if(current->val!='!'){
+				if(current->val=='-'&&(current->next->val=='>'||current->next->next->val=='>')){
+					if(current->next->val==' '){
+						if(current->next->next->val=='>'){
+							if(current->next->next->val==' '){
+								temp=current->next;
+								current->next=current->next->next;
+								free(temp);
+							}
+						}
+					}
+					if(current->next->val=='>'){
+						if(current->next->next->val==' '){
+							temp=current->next->next;
+							current->next->next=current->next->next->next;
+							free(temp);
+							
+						}
+						current=current->next->next;
+					}
+				}
+				else if(current->val!='!'){
 					if(prev->val!=' '){
 						list* newNode=new struct list;
 						newNode->val=' ';
@@ -258,7 +278,7 @@ void checkSpaces(){
 						if(current->next->val==' ')
 							current=current->next;
 					}
-					if(current->next->val=='-'){
+					if(current->next->val=='-'||current->next->val=='&'){
 						if(current->next->next!=NULL&&current->next->next->next!=NULL){
 							if(current->next->next->val==' '){
 								temp=current->next->next;
@@ -311,7 +331,7 @@ void checkSpaces(){
 				if(current->next->val==' ')
 					current=current->next;
 			}
-			if(current->next->val=='-'){
+			if(current->next->val=='-'||current->next->val=='&'){
 				if(current->next->next!=NULL&&current->next->next->next!=NULL){
 					if(current->next->next->val==' '){
 						temp=current->next->next;
